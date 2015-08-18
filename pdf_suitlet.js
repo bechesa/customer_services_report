@@ -1,3 +1,7 @@
+/**
+ * customer minutes application server script
+ */
+
 function pdf_generate(request, response) {
 
 	try {

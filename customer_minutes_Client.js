@@ -1,3 +1,6 @@
+/*******************************************************************************
+ * customer minutes application client script
+ */
 function PrintBtn() {
 	// alert("Print");
 
@@ -46,7 +49,7 @@ function pageInit_customer_minutes(type) {
 			contact_ids.push(record);
 		}
 
-		//alert(nlapiGetFieldValue('custrecord_company_name'));
+		// alert(nlapiGetFieldValue('custrecord_company_name'));
 
 		// var id = ['817'];
 		// nlapiSetCurrentLineItemValues(
@@ -106,6 +109,6 @@ function myLineInit_customer_minutes(type) {
 	// 'custrecord_custmer_name',
 	// nlapiGetFieldValue('custrecord_company_name'), false, false);
 
-	//	}
+	// }
 
 }
