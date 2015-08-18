@@ -1,3 +1,8 @@
+/**
+ *  Customer minutes user event script 
+ */
+ 
+
 function before_Load_user_event() {
 	
 	form.setScript('customscript_client_script');
