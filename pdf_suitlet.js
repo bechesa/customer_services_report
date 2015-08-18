@@ -17,8 +17,9 @@ function pdf_generate(request, response) {
 				var all_email_addresses = getEmail_addressess_in_Array(
 						content[0].employee_ids, 'employee').concat(
 						getEmail_addressess_in_Array(content[0].customers_ids,
-								'contact'),getEmail_addressess_in_Array(content[0].employee_id_cced,
-								'employee'));
+								'contact'),
+						getEmail_addressess_in_Array(
+								content[0].employee_id_cced, 'employee'));
 
 				var emailBody = nlapiMergeRecord(76,
 						'customrecord_parent_minutes_record', id);
@@ -32,8 +33,9 @@ function pdf_generate(request, response) {
 			} else {
 
 				var wiocc_email_addresses = getEmail_addressess_in_Array(
-						content[0].employee_ids, 'employee').concat(getEmail_addressess_in_Array(content[0].employee_id_cced,
-						'employee'));
+						content[0].employee_ids, 'employee').concat(
+						getEmail_addressess_in_Array(
+								content[0].employee_id_cced, 'employee'));
 				var emailBody = nlapiMergeRecord(76,
 						'customrecord_parent_minutes_record', id);
 
@@ -110,7 +112,8 @@ function getContent(id) {
 					"custrecord_item_title", i),
 			note : record.getLineItemValue(
 					"recmachcustrecord_customer_minutes_item",
-					"custrecord_customer_minutes_items", i).replace(/\n/g, "<br/>")
+					"custrecord_customer_minutes_items", i).replace(/\n/g,
+					"<br/>")
 		});
 
 	}
@@ -118,7 +121,7 @@ function getContent(id) {
 	var employee_ids = record.getFieldValues("custrecord_attendees");
 
 	var customers_ids = record.getFieldValues("custrecord_company_attendees");
-	
+
 	var employee_id_cced = record.getFieldValues("custrecord_carbon_copy");
 
 	var send_to_customers = record
@@ -133,9 +136,10 @@ function getContent(id) {
 		wiocc_attendees : record.getFieldTexts("custrecord_attendees").join(),
 		company_attendees : record
 				.getFieldTexts("custrecord_company_attendees").join(),
-//		agenda : record.getFieldValue("custrecord_agenda").replace(/\r?\n/g,
-//				'<br />'),
-		meeting_id : "WIOCC"+record.getFieldValue("custrecord_date").split("/").join("."),
+		// agenda : record.getFieldValue("custrecord_agenda").replace(/\r?\n/g,
+		// '<br />'),
+		meeting_id : "WIOCC"
+				+ record.getFieldValue("custrecord_date").split("/").join("."),
 		action_items : action_items,
 		agenda_items : agenda_items,
 	};
