@@ -2,6 +2,9 @@
  * customer minutes application server script
  */
 
+var email_template_id = 71;
+var doc_template_id = 1036115;
+
 function pdf_generate(request, response) {
 
 	try {
@@ -23,7 +26,7 @@ function pdf_generate(request, response) {
 						getEmail_addressess_in_Array(
 								content[0].customer_employee_id_cced, 'contact'));
 
-				var emailBody = nlapiMergeRecord(76,
+				var emailBody = nlapiMergeRecord(email_template_id,
 						'customrecord_parent_minutes_record', id);
 
 				nlapiSendEmail(nlapiGetUser(), all_email_addresses[0],
@@ -38,7 +41,7 @@ function pdf_generate(request, response) {
 						content[0].employee_ids, 'employee').concat(
 						getEmail_addressess_in_Array(
 								content[0].wiocc_employee_id_cced, 'employee'));
-				var emailBody = nlapiMergeRecord(76,
+				var emailBody = nlapiMergeRecord(email_template_id,
 						'customrecord_parent_minutes_record', id);
 
 				nlapiSendEmail(nlapiGetUser(), wiocc_email_addresses[0],
@@ -68,7 +71,7 @@ function getContent(id) {
 
 	var file_content = [];
 
-	var xml_template = nlapiLoadFile(950527);
+	var xml_template = nlapiLoadFile(doc_template_id);
 
 	var record = nlapiLoadRecord("customrecord_parent_minutes_record", id)
 
