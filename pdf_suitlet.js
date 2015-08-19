@@ -19,7 +19,9 @@ function pdf_generate(request, response) {
 						getEmail_addressess_in_Array(content[0].customers_ids,
 								'contact'),
 						getEmail_addressess_in_Array(
-								content[0].employee_id_cced, 'employee'));
+								content[0].wiocc_employee_id_cced, 'employee'),
+						getEmail_addressess_in_Array(
+								content[0].customer_employee_id_cced, 'contact'));
 
 				var emailBody = nlapiMergeRecord(76,
 						'customrecord_parent_minutes_record', id);
@@ -35,7 +37,7 @@ function pdf_generate(request, response) {
 				var wiocc_email_addresses = getEmail_addressess_in_Array(
 						content[0].employee_ids, 'employee').concat(
 						getEmail_addressess_in_Array(
-								content[0].employee_id_cced, 'employee'));
+								content[0].wiocc_employee_id_cced, 'employee'));
 				var emailBody = nlapiMergeRecord(76,
 						'customrecord_parent_minutes_record', id);
 
@@ -122,7 +124,11 @@ function getContent(id) {
 
 	var customers_ids = record.getFieldValues("custrecord_company_attendees");
 
-	var employee_id_cced = record.getFieldValues("custrecord_carbon_copy");
+	var wiocc_employee_id_cced = record
+			.getFieldValues("custrecord_carbon_copy_wiocc");
+
+	var customer_employee_id_cced = record
+			.getFieldValues("custrecord_carbon_copy_cust");
 
 	var send_to_customers = record
 			.getFieldValue("custrecord_send_to_customers");
@@ -151,7 +157,8 @@ function getContent(id) {
 		employee_ids : employee_ids,
 		send_to_customers : send_to_customers,
 		customers_ids : customers_ids,
-		employee_id_cced : employee_id_cced
+		wiocc_employee_id_cced : wiocc_employee_id_cced,
+		customer_employee_id_cced : customer_employee_id_cced
 	});
 
 	return file_content;
