@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+<style>
+table.default {
+	border-width: thin;
+	border-style: solid black;
+	border-collapse: collapse;
+	width: 100%;
+	margin-left: 10;
+	margin-top: 10;
+	margin-bottom: 10;
+	margin-right: 10;
+	page-break-inside: auto;
+}
+
+table.default td, th {
+	border-width: thin;
+	border-style: solid black;
+	font-family: Arial, Helvetica, sans-serif;
+	vertical-align: middle;
+}
+
+table.default td {
+	font-size: 10px;
+	padding: 4px;
+}
+
+table.default th {
+	font-size: 10px;
+	padding: 4px;
+	background: #ccc;
+}
+
+table.default  tr.separator {
+	background-color: #e3e3e3;
+}
+
+table.default  tr.header {
+	background-color: #9191B5;
+}
+
+table.default  tr.footer {
+	background-color: #AAAAAA;
+}
+</style>
+</head>
+<body>
+	<table class="default" border="1">
+
+		
+				<a href="/app/site/hosting/scriptlet.nl?script=169&deploy=1">Back</a>
+		
+
+		<thead>
+			<tr>
+				<th align="left" colspan="1">Customer Name</th>
+				<th align="left" colspan="1">SOF#</th>
+				<th align="left" colspan="1">Legacy SOF #</th>
+				<th align="left" colspan="1">Description</th>
+				<th align="right" colspan="1">TCV</th>
+				<th align="left" colspan="1">Circuit ID</th>
+				<th align="left" colspan="1">Legacy Circuit ID</th>
+				<th align="left" colspan="1">Service Description</th>
+				<th align="left" colspan="1">Capacity Quantity</th>
+				<th align="left" colspan="1">Unit</th>
+				<th align="left" colspan="1">Term</th>
+				<th align="left" colspan="1">Handover date</th>
+				<th align="left" colspan="1">Expiry</th>
+				<th align="left" colspan="1">Recurrence</th>
+				<th align="left" colspan="1">Type Of Charge</th>
+				<th align="right" colspan="1">MRC</th>
+				<th align="right" colspan="1">QRC</th>
+				<th align="right" colspan="1">NRC</th>
+				<th align="right" colspan="1">ARC</th>
+				
+
+			</tr>
+		</thead>
+		<tbody>
+			{{#customers}}
+			<tr class="header">
+				<td rowspan="{{rowspan}}">{{name}}</td>
+			</tr>
+			{{#services}}
+			<tr class="default">
+				<td align="left" rowspan={{number_of_circuits}} colspan="1">{{sof}}</td>
+				<td align="left" rowspan={{number_of_circuits}} colspan="1">{{sof_legacy_no}}</td>
+				<td align="left" rowspan={{number_of_circuits}} colspan="1">{{memo}}</td>
+			    <td align="right" rowspan={{number_of_circuits}} colspan="1">{{tcv_amount}}</td>
+			</tr>
+			{{#circuits}}
+			<tr>
+				<td align="left">{{new_circuit_id}}</td>
+				<td align="left">{{legacy_no}}</td>
+				<td align="left">{{description}}</td>
+				<td align="left">{{capacity_qty}}</td>
+				<td align="left">{{unit}}</td>
+				<td align="left">{{term}}</td>
+				<td align="left">{{handover_date}}</td>
+				<td align="left">{{expiry_date}}</td>
+				<td align="left">{{recurrence}}</td> 
+				<td align="left">{{charge_type}}</td>
+				<td align="right">{{mrc}}</td>
+				<td align="right">{{qrc}}</td>
+				<td align="right">{{nrc}}</td>
+				<td align="right">{{arc}}</td>
+			</tr>
+
+			{{/circuits}} 
+	
+			{{/services}} {{/customers}}
+
+
+		</tbody>
+	</table>
+</body>
+</pdf>
