@@ -88,10 +88,12 @@ function getContent(id) {
 			type : record.getLineItemText(
 					"recmachcustrecord_parent_minutes_record",
 					"custrecord_item_type", i),
-			note : record.getLineItemValue(
+			note : (record.getLineItemValue(
 					"recmachcustrecord_parent_minutes_record",
-					"custrecord_note", i).replace(
-					/[^\u000D\u00B7\u0020-\u007E\u00A2-\u00A4]/g, ''),
+					"custrecord_note", i))?record.getLineItemValue(
+							"recmachcustrecord_parent_minutes_record",
+							"custrecord_note", i).replace(
+							/[^\u000D\u00B7\u0020-\u007E\u00A2-\u00A4]/g, ''):"",
 			person_responsible : record.getLineItemTexts(
 					"recmachcustrecord_parent_minutes_record",
 					"custrecord_owner", i).join(),
@@ -112,13 +114,17 @@ function getContent(id) {
 	for (i = 1; i <= agenda_items_count; i++) {
 
 		agenda_items.push({
-			topic : record.getLineItemValue(
+			topic : (record.getLineItemValue(
 					"recmachcustrecord_customer_minutes_item",
-					"custrecord_item_title", i),
-			note : record.getLineItemValue(
+					"custrecord_item_title", i))?record.getLineItemValue(
+							"recmachcustrecord_customer_minutes_item",
+							"custrecord_item_title", i):"",
+			note : (record.getLineItemValue(
 					"recmachcustrecord_customer_minutes_item",
-					"custrecord_customer_minutes_items", i).replace(/\n/g,
-					"<br/>")
+					"custrecord_customer_minutes_items", i))?record.getLineItemValue(
+							"recmachcustrecord_customer_minutes_item",
+							"custrecord_customer_minutes_items", i).replace(/\n/g,
+							"<br/>"):"",
 		});
 
 	}
