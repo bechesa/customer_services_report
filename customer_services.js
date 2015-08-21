@@ -56,6 +56,7 @@ function getContent(customer_id) {
 				sof : services[i].sof,
 				memo : services[i].memo,
 				sof_legacy_no : services[i].sof_legacy_no,
+				tcv_amount : services[i].tcv_amount,
 				circuits : circuits,
 				number_of_circuits : circuits.length+1,
 				
@@ -109,6 +110,7 @@ function getServices(customer_id) {
 			memo : memo,
 			sof_legacy_no : custbody_legacy_no,
 			sof_id : record,
+			tcv_amount : numberWithCommas(searchresult.getValue("totalamount")),
 		});
 
 	}
@@ -167,11 +169,12 @@ function getCircuits2(sof_id) {
 	for (var i = 0; searchresults != null && i < searchresults.length; i++) {
 		var searchresult = searchresults[i];
 
+		var searchColumns = searchresult.getAllColumns();
 		circuits.push({
 			new_circuit_id : searchresult
 					.getValue('name', 'CUSTCOL_WI_LINK_ID'),
 			description : searchresult.getValue(
-					'custrecord_customer_service_desc', 'CUSTCOL_WI_LINK_ID'),
+					'memo'),
 			capacity_qty : searchresult.getValue('custrecord_capacity_qty',
 					'CUSTCOL_WI_LINK_ID'),
 			term : searchresult
@@ -187,6 +190,10 @@ function getCircuits2(sof_id) {
 			charge_type : searchresult.getText("custcol_charge_type"),
 			amount : numberWithCommas(searchresult.getValue("amount")),
 			recurrence : searchresult.getText('custcol_recurrence'),
+			mrc : numberWithCommas(searchresult.getValue(searchColumns[19])),
+			arc : numberWithCommas(searchresult.getValue(searchColumns[20])),
+			qrc : numberWithCommas(searchresult.getValue(searchColumns[21])),
+			nrc : numberWithCommas(searchresult.getValue(searchColumns[22])),
 		});
 	}
 	return circuits;
